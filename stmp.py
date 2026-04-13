@@ -74,8 +74,12 @@ student_name = st.selectbox("Select Student", df["Name"].unique())
 # Button click → go to next page
 if st.button("View Scorecard"):
     st.session_state["student"] = student_name
-    st.experimental_set_query_params(page="scorecard")
+    st.session_state["page"] = "scorecard"
 
+# Page switch logic
+if st.session_state.get("page") == "scorecard":
+    st.switch_page("pages/scorecard.py")
+    
 # Deploying the model for predicting score
 st.title("Student marks prediction")
 Maths=st.number_input("Enter the marks obtained in Maths")
